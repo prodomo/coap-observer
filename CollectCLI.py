@@ -58,10 +58,12 @@ class CollectCLI(Cmd):
         if not arg:
             self.stdout.write("Please provide mote's address\n")
             return
-        host = arg
+        args=arg.split(' ')
+        host = args[0]
+        path = args[1]
         # TODO check host valid
         log.info("CLI: add got [{0}]".format(host))
-        moteConnector = MoteConnector(host=host, path="g/bcollect", name=host, is_observer=True, object_callback=object_callback)
+        moteConnector = MoteConnector(host=host, path=path, name=host, is_observer=True, object_callback=object_callback)
         moteConnector.getName()
         moteConnector.start()
         self.mote_connector_lists.append(moteConnector)
