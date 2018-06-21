@@ -8,5 +8,5 @@
 * pip install -r requirements.txt
 
 ## Database Connection
-Please copy `example.cfg` and rename it to `config.cfg`. The programe will read this file to connect to mysql databasr.
+Please copy `example.cfg` and rename it to `config.cfg`. The programe will read this file to connect to mysql database.
 

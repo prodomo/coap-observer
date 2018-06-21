@@ -8,7 +8,7 @@ log = logging.getLogger("root")
 
 import ConfigParser
 config = ConfigParser.RawConfigParser()
-config.read('config.cfg')
+config.read('./config.cfg')
 
 from cmd import Cmd
 
