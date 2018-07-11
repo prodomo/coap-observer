@@ -49,6 +49,6 @@ c.close()
 # body = buffer.getvalue()
 # # Decode using the encoding we figured out.
 # print(body.decode(encoding))
-body = buffer.getvalue().decode('UTF-8')
-print(body)
+body = buffer.getvalue() #.decode('UTF-8')
+print(body.decode(encoding))
 print("Done.")
