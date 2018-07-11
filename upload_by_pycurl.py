@@ -26,7 +26,7 @@ c.setopt(pycurl.POSTFIELDS, mkdir_str)
 # c.setopt(c.HEADERFUNCTION, header_function)
 c.perform()
 
-print (curl_agent.getinfo(pycurl.RESPONSE_CODE))
+#print (curl_agent.getinfo(pycurl.RESPONSE_CODE))
 
 c.close()
 
