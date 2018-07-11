@@ -9,7 +9,7 @@ except ImportError:
 #buffer = BytesIO()
 b = StringIO.StringIO()
 
-mkdir_str = '[{"Mote":"A64A","EnvTemp":"32.20","EnvHumi":"77.88","EnvCo":"21","Alarm":"0"}]'
+mkdir_str = '[{"Mote":"A64A","EnvTemp":"32.20","EnvHumi":"77.88","EnvCO":"21","Alarm":"0"}]'
 
 c = pycurl.Curl()
 c.setopt(pycurl.WRITEFUNCTION, b.write) 
