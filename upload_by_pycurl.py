@@ -6,13 +6,13 @@ try:
 except ImportError:
     from StringIO import StringIO as BytesIO
 
-#buffer = BytesIO()
-b = StringIO.StringIO()
+buffer = BytesIO()
+#b = StringIO.StringIO()
 
 mkdir_str = '[{"Mote":"A64A","EnvTemp":"32.20","EnvHumi":"77.88","EnvCO":"21","Alarm":"0"}]'
 
 c = pycurl.Curl()
-c.setopt(pycurl.WRITEFUNCTION, b.write) 
+c.setopt(pycurl.WRITEFUNCTION, buffer.write) 
 c.setopt(pycurl.FOLLOWLOCATION, 1) 
 c.setopt(pycurl.MAXREDIRS, 5) 
 
@@ -25,6 +25,9 @@ c.setopt(pycurl.POSTFIELDS, mkdir_str)
 # # Set our header function.
 # c.setopt(c.HEADERFUNCTION, header_function)
 c.perform()
+
+print (curl_agent.getinfo(pycurl.RESPONSE_CODE))
+
 c.close()
 
 # Figure out what encoding was sent with the response, if any.
@@ -46,6 +49,6 @@ c.close()
 # body = buffer.getvalue()
 # # Decode using the encoding we figured out.
 # print(body.decode(encoding))
-body = b.getvalue()
+body = buffer.getvalue().decode('UTF-8')
 print(body)
 print("Done.")
