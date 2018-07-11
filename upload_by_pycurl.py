@@ -24,7 +24,7 @@ c.setopt(pycurl.MAXREDIRS, 5)
 c.setopt(pycurl.URL, "http://140.124.184.204:8082/~/in-cse/cnt-686670342")
 c.setopt(pycurl.HTTPHEADER, ['X-M2M-Origin:admin:admin','Content-Type: application/xml;ty=4'])
 c.setopt(pycurl.POST, 1)
-c.setopt(pycurl.POSTFIELDS, urllib.urlencode(mkdir_str))
+c.setopt(pycurl.POSTFIELDS, mkdir_str)
 
 # c.setopt(c.WRITEFUNCTION, buffer.write)
 # # Set our header function.
