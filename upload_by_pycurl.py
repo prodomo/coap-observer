@@ -1,65 +1,56 @@
 import pycurl
+import StringIO
 import re
 try:
     from io import BytesIO
 except ImportError:
     from StringIO import StringIO as BytesIO
 
-headers = {}
-def header_function(header_line):
-    # HTTP standard specifies that headers are encoded in iso-8859-1.
-    # On Python 2, decoding step can be skipped.
-    # On Python 3, decoding step is required.
-    header_line = header_line.decode('iso-8859-1')
+#buffer = BytesIO()
+b = StringIO.StringIO()
 
-    # Header lines include the first status line (HTTP/1.x ...).
-    # We are going to ignore all lines that don't have a colon in them.
-    # This will botch headers that are split on multiple lines...
-    if ':' not in header_line:
-        return
+mkdir_str = {"Mote":"A64A",
+            "EnvTemp":"32.20",
+            "EnvHumi":"77.88",
+            "EnvCo":"21",
+            "Alarm":"0"
+            }
 
-    # Break the header line into header name and value.
-    name, value = header_line.split(':', 1)
-
-    # Remove whitespace that may be present.
-    # Header lines include the trailing newline, and there may be whitespace
-    # around the colon.
-    name = name.strip()
-    value = value.strip()
-
-    # Header names are case insensitive.
-    # Lowercase name here.
-    name = name.lower()
-
-    # Now we can actually record the header name and value.
-    # Note: this only works when headers are not duplicated, see below.
-    headers[name] = value
-
-buffer = BytesIO()
 c = pycurl.Curl()
-c.setopt(c.URL, 'http://pycurl.io')
-c.setopt(c.WRITEFUNCTION, buffer.write)
-# Set our header function.
-c.setopt(c.HEADERFUNCTION, header_function)
+c.setopt(pycurl.WRITEFUNCTION, b.write) 
+c.setopt(pycurl.FOLLOWLOCATION, 1) 
+c.setopt(pycurl.MAXREDIRS, 5) 
+
+c.setopt(pycurl.URL, "http://140.124.184.204:8082/~/in-cse/cnt-686670342")
+c.setopt(pycurl.HTTPHEADER, ['X-M2M-Origin:admin:admin','Content-Type: application/xml;ty=4'])
+c.setopt(pycurl.POST, 1)
+c.setopt(pycurl.POSTFIELDS, urllib.urlencode(mkdir_str))
+
+# c.setopt(c.WRITEFUNCTION, buffer.write)
+# # Set our header function.
+# c.setopt(c.HEADERFUNCTION, header_function)
 c.perform()
 c.close()
 
 # Figure out what encoding was sent with the response, if any.
 # Check against lowercased header name.
-encoding = None
-if 'content-type' in headers:
-    content_type = headers['content-type'].lower()
-    match = re.search('charset=(\S+)', content_type)
-    if match:
-        encoding = match.group(1)
-        print('Decoding using %s' % encoding)
-if encoding is None:
-    # Default encoding for HTML is iso-8859-1.
-    # Other content types may have different default encoding,
-    # or in case of binary data, may have no encoding at all.
-    encoding = 'iso-8859-1'
-    print('Assuming encoding is %s' % encoding)
+# encoding = None
+# if 'content-type' in headers:
+#     content_type = headers['content-type'].lower()
+#     match = re.search('charset=(\S+)', content_type)
+#     if match:
+#         encoding = match.group(1)
+#         print('Decoding using %s' % encoding)
+# if encoding is None:
+#     # Default encoding for HTML is iso-8859-1.
+#     # Other content types may have different default encoding,
+#     # or in case of binary data, may have no encoding at all.
+#     encoding = 'iso-8859-1'
+#     print('Assuming encoding is %s' % encoding)
 
-body = buffer.getvalue()
-# Decode using the encoding we figured out.
-print(body.decode(encoding))
+# body = buffer.getvalue()
+# # Decode using the encoding we figured out.
+# print(body.decode(encoding))
+body = b.getvalue()
+print(body)
+print("Done.")
