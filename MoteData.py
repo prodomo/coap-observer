@@ -1,7 +1,7 @@
 import logging
 log = logging.getLogger("moteData")
 
-from requests_wsn import upload_data_requests
+import upload_data_requests
 
 import struct
 import datetime
@@ -100,4 +100,4 @@ class MoteData(Base):
             gasAlarm=packet_item[1],
         )
         return mote_data
-    requests_wsn.send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm)
+    upload_data_requests.send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm)
