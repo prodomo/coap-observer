@@ -1,5 +1,5 @@
 import pycurl
-import StringIO
+#import StringIO
 import re
 try:
     from io import BytesIO
