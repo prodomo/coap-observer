@@ -99,6 +99,6 @@ class MoteData(Base):
             gasValue=packet_item[13],
             gasAlarm=packet_item[1],
         )
-        upload_data_requests.send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm)
+        upload_data_requests.send(mote,packet_item[0],packet_item[14],packet_item[15],packet_item[13],packet_item[1])
         return mote_data
     
