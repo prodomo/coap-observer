@@ -10,5 +10,6 @@ def send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm):
   headers = {
       'X-M2M-Origin': "admin:admin",
       'Content-Type': "application/json;ty=4",
+      'Connection': "close"
       }
   requests.post(url, data=payload, headers=headers)
