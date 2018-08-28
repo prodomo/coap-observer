@@ -1,11 +1,26 @@
-import os
 import serial
-folder = 'D:/CPS_Moto_Data/'
+import time
+# configuration Serial Port using UART.
+ser = serial.Serial('COM4', 115200, timeout=1)
 
-# ser = serial.Serial('COM3', 115200,)
+if ser.isOpen():
+  ser.close()
+ser.open()
 
-ser = serial.Serial()
-ser.baudrate = 115200
-ser.prot = 'COM4' # for NetLab_Desktop
-ser.open() # open the UART port.
+# get data
 
+def getList(List):
+  #computing List
+  ser.write("54")
+  ser.write("\n")
+  time.sleep(0.5) # wating for WSN to empty array.
+  for i in range(0,34):
+    temp = List[i]
+    print temp
+    ser.write(temp)
+    ser.write("\n")
+  #ser.flushInput() # empty buffer.
+  #time.sleep(0.5)
+  print "UART Done."
+
+# done.
