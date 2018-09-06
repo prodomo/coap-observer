@@ -6,15 +6,15 @@ from MoteConnector import MoteConnector
 logging.config.fileConfig(os.path.join('logging.conf'))
 log = logging.getLogger("root")
 
-import ConfigParser
-config = ConfigParser.RawConfigParser()
-config.read('config.cfg')
+# import ConfigParser
+# config = ConfigParser.RawConfigParser()
+# config.read('config.cfg')
 
 from cmd import Cmd
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import scoped_session
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
+# from sqlalchemy.orm import scoped_session
 #engine = create_engine('mysql+mysqlconnector://{username}:{password}@{host}/{database}'.format(username=config.get('database', 'username'),
                                                                                             #    password=config.get('database', 'password'),
                                                                                             #    host=config.get('database', 'host'),
