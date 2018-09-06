@@ -110,7 +110,7 @@ class MoteData():
             "I",    # Moto Data 29
             "I",    # Moto Data 30
             "I",    # Moto Data 31
-            "I"    # Moto Data 32
+            "I",    # Moto Data 32
         ]
         packet_format_str = ''.join(packet_format)
         packet_item = struct.unpack(packet_format_str, data)
@@ -152,3 +152,4 @@ class MoteData():
         #upload_data_requests.send(mote,packet_item[0],packet_item[14],packet_item[15],packet_item[13],packet_item[1])
         return mote_data
     
+# add fd00::212:4b00:615:a5d4 g/sicslowpan
