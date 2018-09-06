@@ -10,6 +10,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
+# 此處解析
 
 class MoteData(Base):
     __tablename__ = 'mote_data'
@@ -76,7 +77,7 @@ class MoteData(Base):
             "h",    # gasValue  int16 ; 13
             "h",    # temperature int16 ; 14
             "h",    # humidity int16 ; 15
-            "xx",   # end_flag[2] 
+            "xx",   # end_flag[2]
             #"xx",   # end_alignment_padding[2]
         ]
         packet_format_str = ''.join(packet_format)
