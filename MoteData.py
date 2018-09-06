@@ -8,12 +8,12 @@ import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime
 
-Base = declarative_base()
+#Base = declarative_base()
 
 # parser payload information.
 
-class MoteData(Base):
-    __tablename__ = 'mote_data'
+class MoteData():
+    __tablename__ = 'motor_data'
 
     # id = Column(Integer, primary_key=True)
     # mote = Column(String(200))
