@@ -12,7 +12,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 # parser payload information.
 
-class MoteData(self):
+class MoteData():
     __tablename__ = 'motor_data'
 
     self.motor = motor
@@ -146,42 +146,43 @@ class MoteData(self):
         ]
         packet_format_str = ''.join(packet_format)
         packet_item = struct.unpack(packet_format_str, data)
-        mote_data = MoteData(
-            motor="Motor_FFT_information",
-            data1=packet_item[0],
-            data2=packet_item[1],
-            data3=packet_item[2],
-            data4=packet_item[3],
-            data5=packet_item[4],
-            data6=packet_item[5],
-            data7=packet_item[6],
-            data8=packet_item[7],
-            data9=packet_item[8],
-            data10=packet_item[9],
-            data11=packet_item[10],
-            data12=packet_item[11],
-            data13=packet_item[12],
-            data14=packet_item[13],
-            data15=packet_item[14],
-            data16=packet_item[15],
-            data17=packet_item[16],
-            data18=packet_item[17],
-            data19=packet_item[18],
-            data20=packet_item[19],
-            data21=packet_item[20],
-            data22=packet_item[21],
-            data23=packet_item[22],
-            data24=packet_item[23],
-            data25=packet_item[24],
-            data26=packet_item[25],
-            data27=packet_item[26],
-            data28=packet_item[27],
-            data29=packet_item[28],
-            data30=packet_item[29],
-            data31=packet_item[30],
-            data32=packet_item[31],
-        )
+        # mote_data = MoteData(
+        #     motor="Motor_FFT_information",
+        #     data1=packet_item[0],
+        #     data2=packet_item[1],
+        #     data3=packet_item[2],
+        #     data4=packet_item[3],
+        #     data5=packet_item[4],
+        #     data6=packet_item[5],
+        #     data7=packet_item[6],
+        #     data8=packet_item[7],
+        #     data9=packet_item[8],
+        #     data10=packet_item[9],
+        #     data11=packet_item[10],
+        #     data12=packet_item[11],
+        #     data13=packet_item[12],
+        #     data14=packet_item[13],
+        #     data15=packet_item[14],
+        #     data16=packet_item[15],
+        #     data17=packet_item[16],
+        #     data18=packet_item[17],
+        #     data19=packet_item[18],
+        #     data20=packet_item[19],
+        #     data21=packet_item[20],
+        #     data22=packet_item[21],
+        #     data23=packet_item[22],
+        #     data24=packet_item[23],
+        #     data25=packet_item[24],
+        #     data26=packet_item[25],
+        #     data27=packet_item[26],
+        #     data28=packet_item[27],
+        #     data29=packet_item[28],
+        #     data30=packet_item[29],
+        #     data31=packet_item[30],
+        #     data32=packet_item[31],
+        # )
+        upload_data_requests.send(packet_item[0], packet_item[1], packet_item[2], packet_item[3], packet_item[4], packet_item[5], packet_item[6], packet_item[7], packet_item[8], packet_item[9], packet_item[10], packet_item[11], packet_item[12], packet_item[13], packet_item[14], packet_item[15], packet_item[16], packet_item[17], packet_item[18], packet_item[19], packet_item[20], packet_item[21], packet_item[22], packet_item[23], packet_item[24], packet_item[25], packet_item[26], packet_item[27], packet_item[28], packet_item[29], packet_item[30], packet_item[31])
         #upload_data_requests.send(mote,packet_item[0],packet_item[14],packet_item[15],packet_item[13],packet_item[1])
-        return mote_data
+        #return mote_data
     
 # add fd00::212:4b00:615:a5d4 g/sicslowpan
