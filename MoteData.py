@@ -147,7 +147,7 @@ class MoteData():
             data29=packet_item[28],
             data30=packet_item[29],
             data31=packet_item[30],
-            data32=packet_item[31]
+            data32=packet_item[31],
         )
         #upload_data_requests.send(mote,packet_item[0],packet_item[14],packet_item[15],packet_item[13],packet_item[1])
         return mote_data
