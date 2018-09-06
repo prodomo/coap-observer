@@ -32,7 +32,7 @@ class MoteConnector(threading.Thread):
             log.debug("Payload length: {0}".format(len(response.payload)))
             mote_data = MoteData.make_from_bytes(response.source[0], response.payload)
             if mote_data is not None and self.object_callback is not None:
-                self.object_callback(mote_data)
+                self.object_callback(motor_data)
             log.debug("=================================")
 
     def run(self):
