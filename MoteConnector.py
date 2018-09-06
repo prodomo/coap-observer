@@ -30,7 +30,11 @@ class MoteConnector(threading.Thread):
                 packet_content = ":".join("{:02x}".format(ord(c)) for c in response.payload)
                 log.debug(packet_content)
             log.debug("Payload length: {0}".format(len(response.payload)))
-            MoteData.make_from_bytes(response.source[0], response.payload)
+            try:
+                MoteData.make_from_bytes(response.source[0], response.payload)
+            except:
+                print "Packet length are not pair."
+                pass
             #mote_data = MoteData.make_from_bytes(response.source[0], response.payload)
             # if mote_data is not None and self.object_callback is not None:
             #     self.object_callback(mote_data)
