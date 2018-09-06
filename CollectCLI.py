@@ -16,10 +16,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 #engine = create_engine('mysql+mysqlconnector://{username}:{password}@{host}/{database}'.format(username=config.get('database', 'username'),
-                                                                                               password=config.get('database', 'password'),
-                                                                                               host=config.get('database', 'host'),
-                                                                                               database=config.get('database', 'database'),
-                                                                                               ), echo=False)
+                                                                                            #    password=config.get('database', 'password'),
+                                                                                            #    host=config.get('database', 'host'),
+                                                                                            #    database=config.get('database', 'database'),
+                                                                                            #    ), echo=False)
 #session_factory = sessionmaker(bind=engine)
 #Session = scoped_session(session_factory)
 
