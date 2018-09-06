@@ -16,5 +16,5 @@ def send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm):
     try:
         requests.post(url, data=payload, headers=headers)
     except:
-        print "The data are not pass to OM2M, Please check the internet."
+        print "The data can not pass to OM2M server, Please check the internet."
         pass

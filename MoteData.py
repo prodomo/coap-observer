@@ -10,7 +10,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
-# 此處解析
+# parser payload information.
 
 class MoteData(Base):
     __tablename__ = 'mote_data'
