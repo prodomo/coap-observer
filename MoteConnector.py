@@ -33,7 +33,7 @@ class MoteConnector(threading.Thread):
             try:
                 MoteData.make_from_bytes(response.source[0], response.payload)
             except:
-                print "Packet length are not pair."
+                print "Packet length are not match."
                 pass
             #mote_data = MoteData.make_from_bytes(response.source[0], response.payload)
             # if mote_data is not None and self.object_callback is not None:
