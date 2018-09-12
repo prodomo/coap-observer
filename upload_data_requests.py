@@ -12,4 +12,9 @@ def send(mote,packet_tcflow,temperature,humidity,gasValue,gasAlarm):
       'X-M2M-Origin': "admin:admin",
       'Content-Type': "application/json;ty=4"
     }
-    requests.post(url, data=payload, headers=headers, verify=False)
+    try:
+        requests.post(url, data=payload, headers=headers, verify=False)
+        print "Successful upload data to om2m server."
+    except:
+        print "The data can not pass to OM2M server, Please check the internet."
+        pass
