@@ -71,7 +71,7 @@ class CollectCLI(Cmd):
 
         fo = open("../motesAddress","r")
         for line in fo.readlines():
-            CollectCLI.add(line)
+            CollectCLI.do_add(line)
         #try :
 
             
