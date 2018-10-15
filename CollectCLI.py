@@ -69,15 +69,15 @@ class CollectCLI(Cmd):
     def do_addall(self, arg):
         self.stdout.write("Starting Observing to all motes...\n")
 
-        try :
+        #try :
             fo = open("../motesAddress","r")
 
             for line in fo.readlines():
                 CollectCLI.add(line)
             
-        except :
-            self.stdout.write("Do not found moteAddress text.\n")
-            return
+        # except :
+        #     self.stdout.write("Do not found moteAddress text.\n")
+        #     return
 
 
 
