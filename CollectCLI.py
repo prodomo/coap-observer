@@ -42,7 +42,7 @@ class CollectCLI(Cmd):
         log.info("Starting CollectCLI")
 
         Cmd.__init__(self)
-        self.doc_header = 'Commands: list, add, delete'
+        self.doc_header = 'Commands: list, add, addall, delete'
         self.prompt = '>'
         self.intro = '\nCollectCLI! Welcome!'
 
@@ -65,6 +65,19 @@ class CollectCLI(Cmd):
         moteConnector.getName()
         moteConnector.start()
         self.mote_connector_lists.append(moteConnector)
+
+    def do_addall(self, arg):
+        self.stdout.write("Starting Observing to all motes...\n")
+
+        try :
+            with open("../moteAddress","r") as fo:
+                data = fo.readlines()
+            for line in data:
+                do_add(line)
+        except :
+            self.stdout.write("Do not found moteAddress text.\n")
+
+
 
     def do_delete(self, arg):
         if not arg:
