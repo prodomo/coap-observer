@@ -10,7 +10,7 @@ Base = declarative_base()
 
 
 class MoteData(Base):
-    __tablename__ = 'itri_topology_neighbor'
+    __tablename__ = 'itri_topology_neighbors'
 
     id = Column(Integer, primary_key=True)
     devAddr = Column(String(45))
