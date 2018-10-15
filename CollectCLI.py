@@ -70,10 +70,11 @@ class CollectCLI(Cmd):
         self.stdout.write("Starting Observing to all motes...\n")
 
         try :
-            with open("../motesAddress","r") as fo:
-                data = fo.readlines()
-            for line in data:
+            fo = open("../motesAddress","r")
+
+            for line in fo.readlines():
                 do_add(line)
+            
         except :
             self.stdout.write("Do not found moteAddress text.\n")
 
