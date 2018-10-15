@@ -73,7 +73,7 @@ class CollectCLI(Cmd):
             fo = open("../motesAddress","r")
 
             for line in fo.readlines():
-                do_add(line)
+                add(line)
             
         except :
             self.stdout.write("Do not found moteAddress text.\n")
