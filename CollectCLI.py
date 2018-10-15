@@ -68,10 +68,11 @@ class CollectCLI(Cmd):
 
     def do_addall(self, arg):
         self.stdout.write("Starting Observing to all motes...\n")
-
+        cli = CollectCLI()
+        
         fo = open("../motesAddress","r")
         for line in fo.readlines():
-            CollectCLI.do_add(line)
+            cli.do_add(line)
         #try :
 
             
