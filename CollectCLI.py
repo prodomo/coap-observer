@@ -77,6 +77,7 @@ class CollectCLI(Cmd):
             
         except :
             self.stdout.write("Do not found moteAddress text.\n")
+            return
 
 
 
