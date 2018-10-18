@@ -41,19 +41,19 @@ class MoteData(Base):
     @classmethod
     def make_from_bytes(cls, mote, data):
         packet_format = [
-            "I",    #packet_Conter
-            "I",    #rank
-            "H",    #parent
-            "I",    #parent_etx
-            "I",    #num_neighbor
-            "i",    #rssi
-            "I",    #battery
-            "I",    #battery_threshold
-            "I",    #int_tempature
-            "I",    #ext_tempature
-            "I",    #sensor_threshold
-            "I",    #period
-            "I",    #priority
+            "H",    #packet_Conter
+            "H",    #rank
+            "h",    #parent
+            "H",    #parent_etx
+            "H",    #num_neighbor
+            "H",    #rssi
+            "H",    #battery
+            "H",    #battery_threshold
+            "H",    #int_tempature
+            "H",    #ext_tempature
+            "H",    #sensor_threshold
+            "H",    #period
+            "H",    #priority
         ]
         packet_format_str = ''.join(packet_format)
         packet_item = struct.unpack(packet_format_str, data) #according format change data to packet_item
