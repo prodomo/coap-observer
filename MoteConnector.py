@@ -3,7 +3,7 @@ from coapthon.client.helperclient import HelperClient
 
 import logging
 
-from MoteData2 import MoteData
+from MoteData3 import MoteData
 
 log = logging.getLogger("MoteConnector")
 

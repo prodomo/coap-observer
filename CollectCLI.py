@@ -1,5 +1,6 @@
 import logging.config
 import os
+import MySQLdb
 
 from MoteConnector import MoteConnector
 
@@ -11,25 +12,31 @@ config = ConfigParser.RawConfigParser()
 config.read('config.cfg')
 
 from cmd import Cmd
+from WriteToDB import WriteToDB 
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import scoped_session
-engine = create_engine('mysql+mysqlconnector://{username}:{password}@{host}/{database}'.format(username=config.get('database', 'username'),
-                                                                                               password=config.get('database', 'password'),
-                                                                                               host=config.get('database', 'host'),
-                                                                                               database=config.get('database', 'database'),
-                                                                                               ), echo=False)
-session_factory = sessionmaker(bind=engine)
-Session = scoped_session(session_factory)
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
+# from sqlalchemy.orm import scoped_session
+# engine = create_engine('mysql+mysqlconnector://{username}:{password}@{host}/{database}'.format(username=config.get('database', 'username'),
+#                                                                                                password=config.get('database', 'password'),
+#                                                                                                host=config.get('database', 'host'),
+#                                                                                                database=config.get('database', 'database'),
+#                                                                                                ), echo=False)
+# session_factory = sessionmaker(bind=engine)
+# Session = scoped_session(session_factory)
 
 def object_callback(mote_data):
     try:
         log.info("Got new object_callback")
         log.debug(mote_data)
-        session = Session()
-        session.add(mote_data)
-        session.commit()
+        db = MySQLdb.connect("127.0.0.1","root","sakimaru","ITRI_OpenWSN" )
+        writeDB= WriteToDB(db, mote_data)
+        writeDB.upload_to_DB(db, mote_data)
+        db.close()
+
+        # session = Session()
+        # session.add(mote_data)
+        # session.commit()
     except:
         log.error("Got Error!")
         import sys
@@ -61,7 +68,7 @@ class CollectCLI(Cmd):
         host = arg
         # TODO check host valid
         log.info("CLI: add got [{0}]".format(host))
-        moteConnector = MoteConnector(host=host, path="g/bcollect", name=host, is_observer=True, object_callback=object_callback)
+        moteConnector = MoteConnector(host=host, path="g/ncollect", name=host, is_observer=True, object_callback=object_callback)
         moteConnector.getName()
         moteConnector.start()
         self.mote_connector_lists.append(moteConnector)
