@@ -48,7 +48,8 @@ class WriteToDB():
 				cursor.execute(sensor_current_sql)
 				# Commit your changes in the database
 				db.commit()
-				log.debug('D={1}, sql={0}'.format(sensor_sql, datetime.now()))
+				# log.debug('D={1}, sql={0}'.format(sensor_sql, datetime.now()))
+				log.debug('insert senor successed')
 			except:
 				# Rollback in case there is any error
 				#db.rollback()
@@ -56,30 +57,25 @@ class WriteToDB():
 
 			pdr = 1.0/(float(data.parent_etx)/64)
 
-			log.debug('pdr={0}'.format(pdr))
-			log.debug('parent={0}'.format(data.parent))
-
 			neighbors_sql = "INSERT INTO itri_topology_neighbors(mode, neighborNum, devAddr,PDR,\
 				parentAddr, datetime, SN, rank, n1, rssi1)\
 				VALUES ('%s', '%d', '%s', '%.2f', '%s', '%s', '%d', '%d', '%s', '%d')"\
 				%('0x11', data.num_neighbor, data.moteAddr, pdr, data.parent, \
 				datetime.now(), data.packet_counter, data.rank, data.parent, data.rssi)
 
-			# neighbors_current_sql = "REPLACE INTO itri_topology_current_neighbors(mode, neighborNum, devAddr,PDR,\
-			# 	parentAddr, datetime, SN, rank, n1, rssi1)\
-			# 	VALUES ('%s', '%d', '%s', '%.2f',\
-			# 	'%s', '%s', '%d', '%d', '%s', '%d')"\
-			# 	%( '0x11', data.num_neighbor, data.moteAddr,\
-			# 	pdr, data.parent, \
-			# 	datetime.now(), data.packet_counter, data.rank, data.parent, data.rssi)
+			neighbors_current_sql = "REPLACE INTO itri_topology_current_neighbors(mode, neighborNum, devAddr,PDR,\
+				parentAddr, datetime, SN, rank, n1, rssi1)\
+				VALUES ('%s', '%d', '%s', '%.2f', '%s', '%s', '%d', '%d', '%s', '%d')"\
+				%('0x11', data.num_neighbor, data.moteAddr, pdr, data.parent, \
+				datetime.now(), data.packet_counter, data.rank, data.parent, data.rssi)
 			
 
 			try:
 				cursor.execute(neighbors_sql)
 				db.commit()
-				# cursor.execute(neighbors_current_sql)
-				# db.commit()
-				log.debug('D={1}, sql={0}'.format(neighbors_sql, datetime.now()))
+				cursor.execute(neighbors_current_sql)
+				db.commit()
+				# log.debug('sql={0}'.format(neighbors_sql))
 				log.debug('insert neighbor table successed')
 			except:
 				# Rollback in case there is any error
