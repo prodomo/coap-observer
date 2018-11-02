@@ -31,16 +31,16 @@ class WriteToDB():
 			sensor_sql = "INSERT INTO itri_MOEA_sensor(sn, mac_addr, \
 					ext_temperature, pyranometer, datetime, int_temperature, battery_volt) \
 					VALUES ('%d', '%s', '%.2f', '%d', '%s', '%.2f', '%.2f')" %\
-					(data.packet_counter, data.moteAddr, data.ext_tempature,\
-					data.ext_tempature, \
-					datetime.now(), data.int_tempature, data.battery)
+					(data.packet_counter, data.moteAddr, data.sensor_value,\
+					0, \
+					datetime.now(), 0, data.battery)
 
 			sensor_current_sql = "REPLACE INTO itri_MOEA_current_sensor(sn, mac_addr, \
 					ext_temperature, pyranometer, datetime, int_temperature, battery_volt) \
 					VALUES ('%d', '%s', '%.2f', '%d', '%s', '%.2f', '%.2f')" %\
-					(data.packet_counter, data.moteAddr, data.ext_tempature,\
-					data.ext_tempature, \
-					datetime.now(), data.int_tempature, data.battery)
+					(data.packet_counter, data.moteAddr, data.sensor_value,\
+					0, \
+					datetime.now(), 0, data.battery)
 			try:
 				# Execute the SQL command
 				log.debug("2.insert senor data!")
